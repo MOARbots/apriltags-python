@@ -1,6 +1,9 @@
+import os
+
 from distutils.core import setup
 from distutils.extension import Extension
 
+from Cython.Build import cythonize
 
 setup(
 	name = "apriltags",
@@ -20,6 +23,6 @@ setup(
 		'Programming Language :: Cython'
 	],
 	keywords = 'computervision imagerecognition cython bindings apriltags tagging',
-	packages = find_packages(),
-	install_requires = ['cython']
+	install_requires = ['cython'],
+	ext_modules = cythonize([Extension("apriltags", [os.path.join('src', 'apriltags.pyx')])])
 )
