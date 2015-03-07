@@ -3,7 +3,15 @@ cdef extern from "apriltag.h":
 	ctypedef struct apriltag_detector_t:
 		pass
 
-	# Functions operating on the detector
+	# Detector constructor and destructor
 	apriltag_detector_t* apriltag_detector_create()
 	void apriltag_detector_destroy(apriltag_detector_t* td);
 
+	# Tag family structure
+	ctypedef struct apriltag_family_tf:
+		pass
+
+	# Functions to use the tag family
+	void apriltag_detector_add_family(apriltag_detector_t* td, apriltag_family_t* fam);
+	void apriltag_detector_remove_family(apriltag_detector_t* td, apriltag_family_t* fam);
+	void apriltag_detector_clear_families(apriltag_detector_t* td);
