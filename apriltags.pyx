@@ -1,5 +1,8 @@
 cimport capriltag
 
+cdef extern from "tag16h5.h":
+	capriltag.apriltag_family_t* tag16h5_create();
+
 cdef class AprilTagFamily:
 	cdef capriltag.apriltag_family_t* _apriltag_family
 	def __cinit__(self, tagname):
