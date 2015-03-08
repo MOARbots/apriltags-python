@@ -8,6 +8,17 @@ cdef class AprilTagFamily:
 	def __cinit__(self, tagname):
 		if tagname == "tag16h5":
 			self._apriltag_family = tag16h5_create();
+		elif tagname == "tag25h7":
+			self._apriltag_family = tag25h7_create();
+		elif tagname == "tag25h9":
+			self._apriltag_family = tag25h9_create();
+		elif tagname == "tag36artoolkit":
+			self._apriltag_family = tag36artoolkit_create();
+		elif tagname == "tag36h10":
+			self._apriltag_family = tag36h10_create();
+		elif tagname == "tag36h11":
+			self._apriltag_family = tag36h11_create();
+
 
 
 cdef class AprilTagDetector:
