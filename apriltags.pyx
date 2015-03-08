@@ -18,13 +18,13 @@ cdef class AprilTagDetector:
 		if self._apriltag_detector is not NULL:
 			# Free the struct
 			capriltag.apriltag_detector_destroy(self._apriltag_detector)
-			
+
 	# Functions for doing stuff with tag families
 	def add_family(self, tag_family):
 		capriltag.apriltag_add_family(self._apriltag_detector, tag_family)
 
 	def remove_family(self, tag_family):
-		capriltag.apriltag_remove_family(self._apriltag_detecot_t, tag_family)
+		capriltag.apriltag_remove_family(self._apriltag_detector_t, tag_family)
 
 	def remove_all_families():
 		capriltag.apriltag_clear_families(self._apriltag_detector)
