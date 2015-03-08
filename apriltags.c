@@ -449,11 +449,11 @@ struct __pyx_obj_9apriltags_AprilTagDetector;
  * 
  * cdef class AprilTagDetector:             # <<<<<<<<<<<<<<
  * 	# Define a type referencing a struct pointer
- * 	cdef capriltag.apriltag_detector_t* _apriltag_detector_t
+ * 	cdef capriltag.apriltag_detector_t* _apriltag_detector
  */
 struct __pyx_obj_9apriltags_AprilTagDetector {
   PyObject_HEAD
-  apriltag_detector_t *_apriltag_detector_t;
+  apriltag_detector_t *_apriltag_detector;
 };
 
 
@@ -594,7 +594,7 @@ static PyObject *__pyx_n_s_test;
  * 	# When the object is initialized by Python
  * 	def __cinit__(self):             # <<<<<<<<<<<<<<
  * 		# Create a new detector
- * 		self._apriltag_detector_t = capriltag.apriltag_detector_create()
+ * 		self._apriltag_detector = capriltag.apriltag_detector_create()
  */
 
 /* Python wrapper */
@@ -625,25 +625,25 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
   /* "apriltags.pyx":10
  * 	def __cinit__(self):
  * 		# Create a new detector
- * 		self._apriltag_detector_t = capriltag.apriltag_detector_create()             # <<<<<<<<<<<<<<
+ * 		self._apriltag_detector = capriltag.apriltag_detector_create()             # <<<<<<<<<<<<<<
  * 		# If that call went wrong and didn't return a pointer
- * 		if self._apriltag_detector_t is NULL:
+ * 		if self._apriltag_detector is NULL:
  */
-  __pyx_v_self->_apriltag_detector_t = apriltag_detector_create();
+  __pyx_v_self->_apriltag_detector = apriltag_detector_create();
 
   /* "apriltags.pyx":12
- * 		self._apriltag_detector_t = capriltag.apriltag_detector_create()
+ * 		self._apriltag_detector = capriltag.apriltag_detector_create()
  * 		# If that call went wrong and didn't return a pointer
- * 		if self._apriltag_detector_t is NULL:             # <<<<<<<<<<<<<<
+ * 		if self._apriltag_detector is NULL:             # <<<<<<<<<<<<<<
  * 			raise MemoryError()
  * 
  */
-  __pyx_t_1 = ((__pyx_v_self->_apriltag_detector_t == NULL) != 0);
+  __pyx_t_1 = ((__pyx_v_self->_apriltag_detector == NULL) != 0);
   if (__pyx_t_1) {
 
     /* "apriltags.pyx":13
  * 		# If that call went wrong and didn't return a pointer
- * 		if self._apriltag_detector_t is NULL:
+ * 		if self._apriltag_detector is NULL:
  * 			raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  * 	# When Python GCs the object
@@ -656,7 +656,7 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
  * 	# When the object is initialized by Python
  * 	def __cinit__(self):             # <<<<<<<<<<<<<<
  * 		# Create a new detector
- * 		self._apriltag_detector_t = capriltag.apriltag_detector_create()
+ * 		self._apriltag_detector = capriltag.apriltag_detector_create()
  */
 
   /* function exit code */
@@ -675,7 +675,7 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
  * 	# When Python GCs the object
  * 	def __dealloc__(self):             # <<<<<<<<<<<<<<
  * 		# As long as the detector succeeded
- * 		if self._apriltag_detector_t is not NULL:
+ * 		if self._apriltag_detector is not NULL:
  */
 
 /* Python wrapper */
@@ -697,19 +697,19 @@ static void __pyx_pf_9apriltags_16AprilTagDetector_2__dealloc__(struct __pyx_obj
   /* "apriltags.pyx":18
  * 	def __dealloc__(self):
  * 		# As long as the detector succeeded
- * 		if self._apriltag_detector_t is not NULL:             # <<<<<<<<<<<<<<
+ * 		if self._apriltag_detector is not NULL:             # <<<<<<<<<<<<<<
  * 			# Free the struct
- * 			capriltag.apriltag_detector_destroy(self._apriltag_detector_t)
+ * 			capriltag.apriltag_detector_destroy(self._apriltag_detector)
  */
-  __pyx_t_1 = ((__pyx_v_self->_apriltag_detector_t != NULL) != 0);
+  __pyx_t_1 = ((__pyx_v_self->_apriltag_detector != NULL) != 0);
   if (__pyx_t_1) {
 
     /* "apriltags.pyx":20
- * 		if self._apriltag_detector_t is not NULL:
+ * 		if self._apriltag_detector is not NULL:
  * 			# Free the struct
- * 			capriltag.apriltag_detector_destroy(self._apriltag_detector_t)             # <<<<<<<<<<<<<<
+ * 			capriltag.apriltag_detector_destroy(self._apriltag_detector)             # <<<<<<<<<<<<<<
  */
-    apriltag_detector_destroy(__pyx_v_self->_apriltag_detector_t);
+    apriltag_detector_destroy(__pyx_v_self->_apriltag_detector);
     goto __pyx_L3;
   }
   __pyx_L3:;
@@ -719,7 +719,7 @@ static void __pyx_pf_9apriltags_16AprilTagDetector_2__dealloc__(struct __pyx_obj
  * 	# When Python GCs the object
  * 	def __dealloc__(self):             # <<<<<<<<<<<<<<
  * 		# As long as the detector succeeded
- * 		if self._apriltag_detector_t is not NULL:
+ * 		if self._apriltag_detector is not NULL:
  */
 
   /* function exit code */
