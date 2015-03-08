@@ -8,7 +8,7 @@ cdef extern from "apriltag.h":
 	void apriltag_detector_destroy(apriltag_detector_t* td);
 
 	# Tag family structure
-	ctypedef struct apriltag_family_tf:
+	ctypedef struct apriltag_family_t:
 		pass
 
 	# Functions to use the tag family
