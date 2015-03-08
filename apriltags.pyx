@@ -2,8 +2,10 @@ cimport capriltag
 
 cdef class AprilTagFamily:
 	cdef capriltag.apriltag_family_t _apriltag_family
-	def __cinit__(self):
-		self._apriltag_family
+	def __cinit__(self, tagname):
+		if tagname == "tag16h5":
+			print "tag16h5"
+
 
 cdef class AprilTagDetector:
 	# Define a type referencing a struct pointer
