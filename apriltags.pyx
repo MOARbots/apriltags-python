@@ -1,7 +1,7 @@
 cimport capriltag
 
 cdef class AprilTagFamily:
-	cdef capriltag.apriltag_family_t _apriltag_family
+	cdef capriltag.apriltag_family_t* _apriltag_family
 	def __cinit__(self, tagname):
 		if tagname == "tag16h5":
 			print "tag16h5"
