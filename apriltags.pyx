@@ -57,6 +57,3 @@ cdef class AprilTagDetector:
 		if self._apriltag_detector is not NULL:
 			# Free the struct
 			capriltag.apriltag_detector_destroy(self._apriltag_detector)
-
-	#def add_tag_family(self, tagfamily):
-		#capriltag.apriltag_detector_add_family(self._apriltag_detector, <capriltag.apriltag_family_t*>tagfamily._apriltag_family)
