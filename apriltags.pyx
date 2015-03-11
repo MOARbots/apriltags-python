@@ -39,3 +39,9 @@ cdef class AprilTagDetector:
 
 	def add_family(self, AprilTagFamily tag_family not None):
 		capriltag.apriltag_detector_add_family(self._apriltag_detector, tag_family._apriltag_family)
+
+	property quad_decimate:
+		def __get__(self):
+			return self._apriltag_detector.quad_decimate
+		def __set__(self, float value):
+			self._apriltag_detector.quad_decimate = value
