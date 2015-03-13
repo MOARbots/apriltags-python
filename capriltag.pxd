@@ -1,7 +1,12 @@
 cdef extern from "apriltag.h":
 	# The detector itself
 	ctypedef struct apriltag_detector_t:
-		pass
+		int nthreads
+		float quad_decimate;
+		float quad_sigma;
+		int refine_decode;
+		int refine_pose;
+		int debug;
 
 	# Detector constructor and destructor
 	apriltag_detector_t* apriltag_detector_create()

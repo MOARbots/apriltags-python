@@ -17,6 +17,7 @@ cdef class AprilTagFamily:
 		elif tagname == "tag36h11":
 			self._apriltag_family = tags.tag36h11_create();
 
+#cdef class AprilTagDetection:
 
 
 cdef class AprilTagDetector:
@@ -44,5 +45,3 @@ cdef class AprilTagDetector:
 	property quad_decimate:
 		def __get__(self):
 			return self._apriltag_detector.quad_decimate
-		def __set__(self, float value):
-			self._apriltag_detector.quad_decimate = value
