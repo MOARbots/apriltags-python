@@ -45,3 +45,5 @@ cdef class AprilTagDetector:
 	property quad_decimate:
 		def __get__(self):
 			return self._apriltag_detector.quad_decimate
+		def __set__(self, float value):
+			self._apriltag_detector.quad_decimate = value;
