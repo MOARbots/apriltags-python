@@ -1,20 +1,21 @@
 cimport capriltag
+cimport tags
 
 cdef class AprilTagFamily:
 	cdef capriltag.apriltag_family_t* _apriltag_family
 	def __cinit__(self, tagname):
 		if tagname == "tag16h5":
-			self._apriltag_family = tag16h5_create();
+			self._apriltag_family = tags.tag16h5_create();
 		elif tagname == "tag25h7":
-			self._apriltag_family = tag25h7_create();
+			self._apriltag_family = tags.tag25h7_create();
 		elif tagname == "tag25h9":
-			self._apriltag_family = tag25h9_create();
+			self._apriltag_family = tags.tag25h9_create();
 		elif tagname == "tag36artoolkit":
-			self._apriltag_family = tag36artoolkit_create();
+			self._apriltag_family = tags.tag36artoolkit_create();
 		elif tagname == "tag36h10":
-			self._apriltag_family = tag36h10_create();
+			self._apriltag_family = tags.tag36h10_create();
 		elif tagname == "tag36h11":
-			self._apriltag_family = tag36h11_create();
+			self._apriltag_family = tags.tag36h11_create();
 
 
 

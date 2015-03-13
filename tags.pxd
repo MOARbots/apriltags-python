@@ -1,3 +1,5 @@
+cimport capriltag
+
 # Giant block of cdefs for all the tag families
 
 cdef extern from "tag16h5.h":
