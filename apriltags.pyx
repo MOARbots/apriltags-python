@@ -57,5 +57,11 @@ cdef class AprilTagDetector:
 	property quad_sigma:
 		def __get__(self):
 			return self._apriltag_detector.quad_sigma
-		def __set(self, float quad_sigma):
+		def __set__(self, float quad_sigma):
 			self._apriltag_detector.quad_sigma = quad_sigma
+
+	property refine_decode:
+		def __get__(self):
+			return self._apriltag_detector.refine_decode
+		def __set__(self, boolean refine_decode):
+			self._apriltag_detector.refine_decode = refine_decode
