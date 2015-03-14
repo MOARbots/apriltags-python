@@ -3,10 +3,10 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
+        "depends": [],
         "libraries": [
             "capriltag"
-        ],
-        "depends": []
+        ]
     }
 }
 END: Cython Metadata */
@@ -451,8 +451,8 @@ static const char *__pyx_f[] = {
 struct __pyx_obj_9apriltags_AprilTagFamily;
 struct __pyx_obj_9apriltags_AprilTagDetector;
 
-/* "apriltags.pyx":24
- * 
+/* "apriltags.pyx":4
+ * cimport tags
  * 
  * cdef class AprilTagFamily:             # <<<<<<<<<<<<<<
  * 	cdef capriltag.apriltag_family_t* _apriltag_family
@@ -464,7 +464,7 @@ struct __pyx_obj_9apriltags_AprilTagFamily {
 };
 
 
-/* "apriltags.pyx":42
+/* "apriltags.pyx":23
  * 
  * 
  * cdef class AprilTagDetector:             # <<<<<<<<<<<<<<
@@ -580,6 +580,9 @@ static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int 
 
 static CYTHON_INLINE int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed);
 
+static CYTHON_INLINE int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, int none_allowed,
+    const char *name, int exact);
+
 typedef struct {
     int code_line;
     PyCodeObject* code_object;
@@ -597,11 +600,13 @@ static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object);
 static void __Pyx_AddTraceback(const char *funcname, int c_line,
                                int py_line, const char *filename);
 
+static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
+
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
-
-static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
 static int __Pyx_check_binary_version(void);
 
@@ -609,6 +614,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
 /* Module declarations from 'capriltag' */
+
+/* Module declarations from 'tags' */
 
 /* Module declarations from 'apriltags' */
 static PyTypeObject *__pyx_ptype_9apriltags_AprilTagFamily = 0;
@@ -621,6 +628,15 @@ static PyObject *__pyx_builtin_MemoryError;
 static int __pyx_pf_9apriltags_14AprilTagFamily___cinit__(struct __pyx_obj_9apriltags_AprilTagFamily *__pyx_v_self, PyObject *__pyx_v_tagname); /* proto */
 static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self); /* proto */
 static void __pyx_pf_9apriltags_16AprilTagDetector_2__dealloc__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_4add_family(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, struct __pyx_obj_9apriltags_AprilTagFamily *__pyx_v_tag_family); /* proto */
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_8nthreads___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self); /* proto */
+static int __pyx_pf_9apriltags_16AprilTagDetector_8nthreads_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, int __pyx_v_nthreads); /* proto */
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_13quad_decimate___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self); /* proto */
+static int __pyx_pf_9apriltags_16AprilTagDetector_13quad_decimate_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, float __pyx_v_quad_decimate); /* proto */
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_10quad_sigma___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self); /* proto */
+static int __pyx_pf_9apriltags_16AprilTagDetector_10quad_sigma_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, float __pyx_v_quad_sigma); /* proto */
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_13refine_decode___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self); /* proto */
+static int __pyx_pf_9apriltags_16AprilTagDetector_13refine_decode_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, int __pyx_v_refine_decode); /* proto */
 static PyObject *__pyx_tp_new_9apriltags_AprilTagFamily(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_9apriltags_AprilTagDetector(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static char __pyx_k_main[] = "__main__";
@@ -644,12 +660,12 @@ static PyObject *__pyx_n_s_tag36h11;
 static PyObject *__pyx_n_s_tagname;
 static PyObject *__pyx_n_s_test;
 
-/* "apriltags.pyx":26
+/* "apriltags.pyx":6
  * cdef class AprilTagFamily:
  * 	cdef capriltag.apriltag_family_t* _apriltag_family
  * 	def __cinit__(self, tagname):             # <<<<<<<<<<<<<<
  * 		if tagname == "tag16h5":
- * 			self._apriltag_family = tag16h5_create();
+ * 			self._apriltag_family = tags.tag16h5_create();
  */
 
 /* Python wrapper */
@@ -680,7 +696,7 @@ static int __pyx_pw_9apriltags_14AprilTagFamily_1__cinit__(PyObject *__pyx_v_sel
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -691,7 +707,7 @@ static int __pyx_pw_9apriltags_14AprilTagFamily_1__cinit__(PyObject *__pyx_v_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("apriltags.AprilTagFamily.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -713,139 +729,139 @@ static int __pyx_pf_9apriltags_14AprilTagFamily___cinit__(struct __pyx_obj_9apri
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "apriltags.pyx":27
+  /* "apriltags.pyx":7
  * 	cdef capriltag.apriltag_family_t* _apriltag_family
  * 	def __cinit__(self, tagname):
  * 		if tagname == "tag16h5":             # <<<<<<<<<<<<<<
- * 			self._apriltag_family = tag16h5_create();
+ * 			self._apriltag_family = tags.tag16h5_create();
  * 		elif tagname == "tag25h7":
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag16h5, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 27; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag16h5, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":28
+    /* "apriltags.pyx":8
  * 	def __cinit__(self, tagname):
  * 		if tagname == "tag16h5":
- * 			self._apriltag_family = tag16h5_create();             # <<<<<<<<<<<<<<
+ * 			self._apriltag_family = tags.tag16h5_create();             # <<<<<<<<<<<<<<
  * 		elif tagname == "tag25h7":
- * 			self._apriltag_family = tag25h7_create();
+ * 			self._apriltag_family = tags.tag25h7_create();
  */
     __pyx_v_self->_apriltag_family = tag16h5_create();
     goto __pyx_L3;
   }
 
-  /* "apriltags.pyx":29
+  /* "apriltags.pyx":9
  * 		if tagname == "tag16h5":
- * 			self._apriltag_family = tag16h5_create();
+ * 			self._apriltag_family = tags.tag16h5_create();
  * 		elif tagname == "tag25h7":             # <<<<<<<<<<<<<<
- * 			self._apriltag_family = tag25h7_create();
+ * 			self._apriltag_family = tags.tag25h7_create();
  * 		elif tagname == "tag25h9":
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag25h7, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag25h7, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":30
- * 			self._apriltag_family = tag16h5_create();
+    /* "apriltags.pyx":10
+ * 			self._apriltag_family = tags.tag16h5_create();
  * 		elif tagname == "tag25h7":
- * 			self._apriltag_family = tag25h7_create();             # <<<<<<<<<<<<<<
+ * 			self._apriltag_family = tags.tag25h7_create();             # <<<<<<<<<<<<<<
  * 		elif tagname == "tag25h9":
- * 			self._apriltag_family = tag25h9_create();
+ * 			self._apriltag_family = tags.tag25h9_create();
  */
     __pyx_v_self->_apriltag_family = tag25h7_create();
     goto __pyx_L3;
   }
 
-  /* "apriltags.pyx":31
+  /* "apriltags.pyx":11
  * 		elif tagname == "tag25h7":
- * 			self._apriltag_family = tag25h7_create();
+ * 			self._apriltag_family = tags.tag25h7_create();
  * 		elif tagname == "tag25h9":             # <<<<<<<<<<<<<<
- * 			self._apriltag_family = tag25h9_create();
+ * 			self._apriltag_family = tags.tag25h9_create();
  * 		elif tagname == "tag36artoolkit":
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag25h9, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag25h9, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":32
- * 			self._apriltag_family = tag25h7_create();
+    /* "apriltags.pyx":12
+ * 			self._apriltag_family = tags.tag25h7_create();
  * 		elif tagname == "tag25h9":
- * 			self._apriltag_family = tag25h9_create();             # <<<<<<<<<<<<<<
+ * 			self._apriltag_family = tags.tag25h9_create();             # <<<<<<<<<<<<<<
  * 		elif tagname == "tag36artoolkit":
- * 			self._apriltag_family = tag36artoolkit_create();
+ * 			self._apriltag_family = tags.tag36artoolkit_create();
  */
     __pyx_v_self->_apriltag_family = tag25h9_create();
     goto __pyx_L3;
   }
 
-  /* "apriltags.pyx":33
+  /* "apriltags.pyx":13
  * 		elif tagname == "tag25h9":
- * 			self._apriltag_family = tag25h9_create();
+ * 			self._apriltag_family = tags.tag25h9_create();
  * 		elif tagname == "tag36artoolkit":             # <<<<<<<<<<<<<<
- * 			self._apriltag_family = tag36artoolkit_create();
+ * 			self._apriltag_family = tags.tag36artoolkit_create();
  * 		elif tagname == "tag36h10":
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag36artoolkit, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag36artoolkit, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":34
- * 			self._apriltag_family = tag25h9_create();
+    /* "apriltags.pyx":14
+ * 			self._apriltag_family = tags.tag25h9_create();
  * 		elif tagname == "tag36artoolkit":
- * 			self._apriltag_family = tag36artoolkit_create();             # <<<<<<<<<<<<<<
+ * 			self._apriltag_family = tags.tag36artoolkit_create();             # <<<<<<<<<<<<<<
  * 		elif tagname == "tag36h10":
- * 			self._apriltag_family = tag36h10_create();
+ * 			self._apriltag_family = tags.tag36h10_create();
  */
     __pyx_v_self->_apriltag_family = tag36artoolkit_create();
     goto __pyx_L3;
   }
 
-  /* "apriltags.pyx":35
+  /* "apriltags.pyx":15
  * 		elif tagname == "tag36artoolkit":
- * 			self._apriltag_family = tag36artoolkit_create();
+ * 			self._apriltag_family = tags.tag36artoolkit_create();
  * 		elif tagname == "tag36h10":             # <<<<<<<<<<<<<<
- * 			self._apriltag_family = tag36h10_create();
+ * 			self._apriltag_family = tags.tag36h10_create();
  * 		elif tagname == "tag36h11":
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag36h10, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag36h10, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":36
- * 			self._apriltag_family = tag36artoolkit_create();
+    /* "apriltags.pyx":16
+ * 			self._apriltag_family = tags.tag36artoolkit_create();
  * 		elif tagname == "tag36h10":
- * 			self._apriltag_family = tag36h10_create();             # <<<<<<<<<<<<<<
+ * 			self._apriltag_family = tags.tag36h10_create();             # <<<<<<<<<<<<<<
  * 		elif tagname == "tag36h11":
- * 			self._apriltag_family = tag36h11_create();
+ * 			self._apriltag_family = tags.tag36h11_create();
  */
     __pyx_v_self->_apriltag_family = tag36h10_create();
     goto __pyx_L3;
   }
 
-  /* "apriltags.pyx":37
+  /* "apriltags.pyx":17
  * 		elif tagname == "tag36h10":
- * 			self._apriltag_family = tag36h10_create();
+ * 			self._apriltag_family = tags.tag36h10_create();
  * 		elif tagname == "tag36h11":             # <<<<<<<<<<<<<<
- * 			self._apriltag_family = tag36h11_create();
+ * 			self._apriltag_family = tags.tag36h11_create();
  * 
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag36h11, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 37; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_tagname, __pyx_n_s_tag36h11, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":38
- * 			self._apriltag_family = tag36h10_create();
+    /* "apriltags.pyx":18
+ * 			self._apriltag_family = tags.tag36h10_create();
  * 		elif tagname == "tag36h11":
- * 			self._apriltag_family = tag36h11_create();             # <<<<<<<<<<<<<<
+ * 			self._apriltag_family = tags.tag36h11_create();             # <<<<<<<<<<<<<<
  * 
- * 
+ * #cdef class AprilTagDetection:
  */
     __pyx_v_self->_apriltag_family = tag36h11_create();
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "apriltags.pyx":26
+  /* "apriltags.pyx":6
  * cdef class AprilTagFamily:
  * 	cdef capriltag.apriltag_family_t* _apriltag_family
  * 	def __cinit__(self, tagname):             # <<<<<<<<<<<<<<
  * 		if tagname == "tag16h5":
- * 			self._apriltag_family = tag16h5_create();
+ * 			self._apriltag_family = tags.tag16h5_create();
  */
 
   /* function exit code */
@@ -859,7 +875,7 @@ static int __pyx_pf_9apriltags_14AprilTagFamily___cinit__(struct __pyx_obj_9apri
   return __pyx_r;
 }
 
-/* "apriltags.pyx":47
+/* "apriltags.pyx":28
  * 
  * 	# When the object is initialized by Python
  * 	def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -892,7 +908,7 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "apriltags.pyx":49
+  /* "apriltags.pyx":30
  * 	def __cinit__(self):
  * 		# Create a new detector
  * 		self._apriltag_detector = capriltag.apriltag_detector_create()             # <<<<<<<<<<<<<<
@@ -901,7 +917,7 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
  */
   __pyx_v_self->_apriltag_detector = apriltag_detector_create();
 
-  /* "apriltags.pyx":51
+  /* "apriltags.pyx":32
  * 		self._apriltag_detector = capriltag.apriltag_detector_create()
  * 		# If that call went wrong and didn't return a pointer
  * 		if self._apriltag_detector is NULL:             # <<<<<<<<<<<<<<
@@ -911,17 +927,17 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
   __pyx_t_1 = ((__pyx_v_self->_apriltag_detector == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":52
+    /* "apriltags.pyx":33
  * 		# If that call went wrong and didn't return a pointer
  * 		if self._apriltag_detector is NULL:
  * 			raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  * 	# When Python GCs the object
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "apriltags.pyx":47
+  /* "apriltags.pyx":28
  * 
  * 	# When the object is initialized by Python
  * 	def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -940,7 +956,7 @@ static int __pyx_pf_9apriltags_16AprilTagDetector___cinit__(struct __pyx_obj_9ap
   return __pyx_r;
 }
 
-/* "apriltags.pyx":55
+/* "apriltags.pyx":36
  * 
  * 	# When Python GCs the object
  * 	def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -964,7 +980,7 @@ static void __pyx_pf_9apriltags_16AprilTagDetector_2__dealloc__(struct __pyx_obj
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "apriltags.pyx":57
+  /* "apriltags.pyx":38
  * 	def __dealloc__(self):
  * 		# As long as the detector succeeded
  * 		if self._apriltag_detector is not NULL:             # <<<<<<<<<<<<<<
@@ -974,19 +990,19 @@ static void __pyx_pf_9apriltags_16AprilTagDetector_2__dealloc__(struct __pyx_obj
   __pyx_t_1 = ((__pyx_v_self->_apriltag_detector != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "apriltags.pyx":59
+    /* "apriltags.pyx":40
  * 		if self._apriltag_detector is not NULL:
  * 			# Free the struct
  * 			capriltag.apriltag_detector_destroy(self._apriltag_detector)             # <<<<<<<<<<<<<<
  * 
- * 	#def add_tag_family(self, tagfamily):
+ * 	def add_family(self, AprilTagFamily tag_family not None):
  */
     apriltag_detector_destroy(__pyx_v_self->_apriltag_detector);
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "apriltags.pyx":55
+  /* "apriltags.pyx":36
  * 
  * 	# When Python GCs the object
  * 	def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -996,6 +1012,560 @@ static void __pyx_pf_9apriltags_16AprilTagDetector_2__dealloc__(struct __pyx_obj
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
+}
+
+/* "apriltags.pyx":42
+ * 			capriltag.apriltag_detector_destroy(self._apriltag_detector)
+ * 
+ * 	def add_family(self, AprilTagFamily tag_family not None):             # <<<<<<<<<<<<<<
+ * 		capriltag.apriltag_detector_add_family(self._apriltag_detector, tag_family._apriltag_family)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_5add_family(PyObject *__pyx_v_self, PyObject *__pyx_v_tag_family); /*proto*/
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_5add_family(PyObject *__pyx_v_self, PyObject *__pyx_v_tag_family) {
+  CYTHON_UNUSED int __pyx_lineno = 0;
+  CYTHON_UNUSED const char *__pyx_filename = NULL;
+  CYTHON_UNUSED int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("add_family (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_tag_family), __pyx_ptype_9apriltags_AprilTagFamily, 0, "tag_family", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_4add_family(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self), ((struct __pyx_obj_9apriltags_AprilTagFamily *)__pyx_v_tag_family));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_4add_family(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, struct __pyx_obj_9apriltags_AprilTagFamily *__pyx_v_tag_family) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("add_family", 0);
+
+  /* "apriltags.pyx":43
+ * 
+ * 	def add_family(self, AprilTagFamily tag_family not None):
+ * 		capriltag.apriltag_detector_add_family(self._apriltag_detector, tag_family._apriltag_family)             # <<<<<<<<<<<<<<
+ * 
+ * 	property nthreads:
+ */
+  apriltag_detector_add_family(__pyx_v_self->_apriltag_detector, __pyx_v_tag_family->_apriltag_family);
+
+  /* "apriltags.pyx":42
+ * 			capriltag.apriltag_detector_destroy(self._apriltag_detector)
+ * 
+ * 	def add_family(self, AprilTagFamily tag_family not None):             # <<<<<<<<<<<<<<
+ * 		capriltag.apriltag_detector_add_family(self._apriltag_detector, tag_family._apriltag_family)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":46
+ * 
+ * 	property nthreads:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.nthreads
+ * 		def __set__(self, int nthreads):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_8nthreads_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_8nthreads_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_8nthreads___get__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_8nthreads___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "apriltags.pyx":47
+ * 	property nthreads:
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.nthreads             # <<<<<<<<<<<<<<
+ * 		def __set__(self, int nthreads):
+ * 			self._apriltag_detector.nthreads = nthreads
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->_apriltag_detector->nthreads); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "apriltags.pyx":46
+ * 
+ * 	property nthreads:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.nthreads
+ * 		def __set__(self, int nthreads):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.nthreads.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":48
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.nthreads
+ * 		def __set__(self, int nthreads):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.nthreads = nthreads
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_9apriltags_16AprilTagDetector_8nthreads_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_nthreads); /*proto*/
+static int __pyx_pw_9apriltags_16AprilTagDetector_8nthreads_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_nthreads) {
+  int __pyx_v_nthreads;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  assert(__pyx_arg_nthreads); {
+    __pyx_v_nthreads = __Pyx_PyInt_As_int(__pyx_arg_nthreads); if (unlikely((__pyx_v_nthreads == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 48; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.nthreads.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return -1;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_8nthreads_2__set__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self), ((int)__pyx_v_nthreads));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_9apriltags_16AprilTagDetector_8nthreads_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, int __pyx_v_nthreads) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "apriltags.pyx":49
+ * 			return self._apriltag_detector.nthreads
+ * 		def __set__(self, int nthreads):
+ * 			self._apriltag_detector.nthreads = nthreads             # <<<<<<<<<<<<<<
+ * 
+ * 	property quad_decimate:
+ */
+  __pyx_v_self->_apriltag_detector->nthreads = __pyx_v_nthreads;
+
+  /* "apriltags.pyx":48
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.nthreads
+ * 		def __set__(self, int nthreads):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.nthreads = nthreads
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":52
+ * 
+ * 	property quad_decimate:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.quad_decimate
+ * 		def __set__(self, float quad_decimate):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_13quad_decimate_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_13quad_decimate_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_13quad_decimate___get__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_13quad_decimate___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "apriltags.pyx":53
+ * 	property quad_decimate:
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.quad_decimate             # <<<<<<<<<<<<<<
+ * 		def __set__(self, float quad_decimate):
+ * 			self._apriltag_detector.quad_decimate = quad_decimate
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_apriltag_detector->quad_decimate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "apriltags.pyx":52
+ * 
+ * 	property quad_decimate:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.quad_decimate
+ * 		def __set__(self, float quad_decimate):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.quad_decimate.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":54
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.quad_decimate
+ * 		def __set__(self, float quad_decimate):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.quad_decimate = quad_decimate
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_9apriltags_16AprilTagDetector_13quad_decimate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_quad_decimate); /*proto*/
+static int __pyx_pw_9apriltags_16AprilTagDetector_13quad_decimate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_quad_decimate) {
+  float __pyx_v_quad_decimate;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  assert(__pyx_arg_quad_decimate); {
+    __pyx_v_quad_decimate = __pyx_PyFloat_AsFloat(__pyx_arg_quad_decimate); if (unlikely((__pyx_v_quad_decimate == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.quad_decimate.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return -1;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_13quad_decimate_2__set__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self), ((float)__pyx_v_quad_decimate));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_9apriltags_16AprilTagDetector_13quad_decimate_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, float __pyx_v_quad_decimate) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "apriltags.pyx":55
+ * 			return self._apriltag_detector.quad_decimate
+ * 		def __set__(self, float quad_decimate):
+ * 			self._apriltag_detector.quad_decimate = quad_decimate             # <<<<<<<<<<<<<<
+ * 
+ * 	property quad_sigma:
+ */
+  __pyx_v_self->_apriltag_detector->quad_decimate = __pyx_v_quad_decimate;
+
+  /* "apriltags.pyx":54
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.quad_decimate
+ * 		def __set__(self, float quad_decimate):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.quad_decimate = quad_decimate
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":58
+ * 
+ * 	property quad_sigma:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.quad_sigma
+ * 		def __set__(self, float quad_sigma):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_10quad_sigma_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_10quad_sigma_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_10quad_sigma___get__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_10quad_sigma___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "apriltags.pyx":59
+ * 	property quad_sigma:
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.quad_sigma             # <<<<<<<<<<<<<<
+ * 		def __set__(self, float quad_sigma):
+ * 			self._apriltag_detector.quad_sigma = quad_sigma
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_apriltag_detector->quad_sigma); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 59; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "apriltags.pyx":58
+ * 
+ * 	property quad_sigma:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.quad_sigma
+ * 		def __set__(self, float quad_sigma):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.quad_sigma.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":60
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.quad_sigma
+ * 		def __set__(self, float quad_sigma):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.quad_sigma = quad_sigma
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_9apriltags_16AprilTagDetector_10quad_sigma_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_quad_sigma); /*proto*/
+static int __pyx_pw_9apriltags_16AprilTagDetector_10quad_sigma_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_quad_sigma) {
+  float __pyx_v_quad_sigma;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  assert(__pyx_arg_quad_sigma); {
+    __pyx_v_quad_sigma = __pyx_PyFloat_AsFloat(__pyx_arg_quad_sigma); if (unlikely((__pyx_v_quad_sigma == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.quad_sigma.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return -1;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_10quad_sigma_2__set__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self), ((float)__pyx_v_quad_sigma));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_9apriltags_16AprilTagDetector_10quad_sigma_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, float __pyx_v_quad_sigma) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "apriltags.pyx":61
+ * 			return self._apriltag_detector.quad_sigma
+ * 		def __set__(self, float quad_sigma):
+ * 			self._apriltag_detector.quad_sigma = quad_sigma             # <<<<<<<<<<<<<<
+ * 
+ * 	property refine_decode:
+ */
+  __pyx_v_self->_apriltag_detector->quad_sigma = __pyx_v_quad_sigma;
+
+  /* "apriltags.pyx":60
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.quad_sigma
+ * 		def __set__(self, float quad_sigma):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.quad_sigma = quad_sigma
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":64
+ * 
+ * 	property refine_decode:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.refine_decode
+ * 		def __set__(self, bint refine_decode):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_13refine_decode_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_9apriltags_16AprilTagDetector_13refine_decode_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_13refine_decode___get__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9apriltags_16AprilTagDetector_13refine_decode___get__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "apriltags.pyx":65
+ * 	property refine_decode:
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.refine_decode             # <<<<<<<<<<<<<<
+ * 		def __set__(self, bint refine_decode):
+ * 			self._apriltag_detector.refine_decode = refine_decode
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->_apriltag_detector->refine_decode); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "apriltags.pyx":64
+ * 
+ * 	property refine_decode:
+ * 		def __get__(self):             # <<<<<<<<<<<<<<
+ * 			return self._apriltag_detector.refine_decode
+ * 		def __set__(self, bint refine_decode):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.refine_decode.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "apriltags.pyx":66
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.refine_decode
+ * 		def __set__(self, bint refine_decode):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.refine_decode = refine_decode
+ */
+
+/* Python wrapper */
+static int __pyx_pw_9apriltags_16AprilTagDetector_13refine_decode_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_refine_decode); /*proto*/
+static int __pyx_pw_9apriltags_16AprilTagDetector_13refine_decode_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_refine_decode) {
+  int __pyx_v_refine_decode;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  assert(__pyx_arg_refine_decode); {
+    __pyx_v_refine_decode = __Pyx_PyObject_IsTrue(__pyx_arg_refine_decode); if (unlikely((__pyx_v_refine_decode == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("apriltags.AprilTagDetector.refine_decode.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return -1;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_9apriltags_16AprilTagDetector_13refine_decode_2__set__(((struct __pyx_obj_9apriltags_AprilTagDetector *)__pyx_v_self), ((int)__pyx_v_refine_decode));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_9apriltags_16AprilTagDetector_13refine_decode_2__set__(struct __pyx_obj_9apriltags_AprilTagDetector *__pyx_v_self, int __pyx_v_refine_decode) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "apriltags.pyx":67
+ * 			return self._apriltag_detector.refine_decode
+ * 		def __set__(self, bint refine_decode):
+ * 			self._apriltag_detector.refine_decode = refine_decode             # <<<<<<<<<<<<<<
+ */
+  __pyx_v_self->_apriltag_detector->refine_decode = __pyx_v_refine_decode;
+
+  /* "apriltags.pyx":66
+ * 		def __get__(self):
+ * 			return self._apriltag_detector.refine_decode
+ * 		def __set__(self, bint refine_decode):             # <<<<<<<<<<<<<<
+ * 			self._apriltag_detector.refine_decode = refine_decode
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
 }
 
 static PyObject *__pyx_tp_new_9apriltags_AprilTagFamily(PyTypeObject *t, PyObject *a, PyObject *k) {
@@ -1113,8 +1683,73 @@ static void __pyx_tp_dealloc_9apriltags_AprilTagDetector(PyObject *o) {
   (*Py_TYPE(o)->tp_free)(o);
 }
 
+static PyObject *__pyx_getprop_9apriltags_16AprilTagDetector_nthreads(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_9apriltags_16AprilTagDetector_8nthreads_1__get__(o);
+}
+
+static int __pyx_setprop_9apriltags_16AprilTagDetector_nthreads(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_9apriltags_16AprilTagDetector_8nthreads_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
+static PyObject *__pyx_getprop_9apriltags_16AprilTagDetector_quad_decimate(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_9apriltags_16AprilTagDetector_13quad_decimate_1__get__(o);
+}
+
+static int __pyx_setprop_9apriltags_16AprilTagDetector_quad_decimate(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_9apriltags_16AprilTagDetector_13quad_decimate_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
+static PyObject *__pyx_getprop_9apriltags_16AprilTagDetector_quad_sigma(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_9apriltags_16AprilTagDetector_10quad_sigma_1__get__(o);
+}
+
+static int __pyx_setprop_9apriltags_16AprilTagDetector_quad_sigma(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_9apriltags_16AprilTagDetector_10quad_sigma_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
+static PyObject *__pyx_getprop_9apriltags_16AprilTagDetector_refine_decode(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_9apriltags_16AprilTagDetector_13refine_decode_1__get__(o);
+}
+
+static int __pyx_setprop_9apriltags_16AprilTagDetector_refine_decode(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_9apriltags_16AprilTagDetector_13refine_decode_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyMethodDef __pyx_methods_9apriltags_AprilTagDetector[] = {
+  {"add_family", (PyCFunction)__pyx_pw_9apriltags_16AprilTagDetector_5add_family, METH_O, 0},
   {0, 0, 0, 0}
+};
+
+static struct PyGetSetDef __pyx_getsets_9apriltags_AprilTagDetector[] = {
+  {(char *)"nthreads", __pyx_getprop_9apriltags_16AprilTagDetector_nthreads, __pyx_setprop_9apriltags_16AprilTagDetector_nthreads, 0, 0},
+  {(char *)"quad_decimate", __pyx_getprop_9apriltags_16AprilTagDetector_quad_decimate, __pyx_setprop_9apriltags_16AprilTagDetector_quad_decimate, 0, 0},
+  {(char *)"quad_sigma", __pyx_getprop_9apriltags_16AprilTagDetector_quad_sigma, __pyx_setprop_9apriltags_16AprilTagDetector_quad_sigma, 0, 0},
+  {(char *)"refine_decode", __pyx_getprop_9apriltags_16AprilTagDetector_refine_decode, __pyx_setprop_9apriltags_16AprilTagDetector_refine_decode, 0, 0},
+  {0, 0, 0, 0, 0}
 };
 
 static PyTypeObject __pyx_type_9apriltags_AprilTagDetector = {
@@ -1151,7 +1786,7 @@ static PyTypeObject __pyx_type_9apriltags_AprilTagDetector = {
   0, /*tp_iternext*/
   __pyx_methods_9apriltags_AprilTagDetector, /*tp_methods*/
   0, /*tp_members*/
-  0, /*tp_getset*/
+  __pyx_getsets_9apriltags_AprilTagDetector, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
@@ -1210,7 +1845,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -1310,13 +1945,13 @@ PyMODINIT_FUNC PyInit_apriltags(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_9apriltags_AprilTagFamily) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_9apriltags_AprilTagFamily) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_9apriltags_AprilTagFamily.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AprilTagFamily", (PyObject *)&__pyx_type_9apriltags_AprilTagFamily) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "AprilTagFamily", (PyObject *)&__pyx_type_9apriltags_AprilTagFamily) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_9apriltags_AprilTagFamily = &__pyx_type_9apriltags_AprilTagFamily;
-  if (PyType_Ready(&__pyx_type_9apriltags_AprilTagDetector) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_9apriltags_AprilTagDetector) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_9apriltags_AprilTagDetector.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AprilTagDetector", (PyObject *)&__pyx_type_9apriltags_AprilTagDetector) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "AprilTagDetector", (PyObject *)&__pyx_type_9apriltags_AprilTagDetector) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_9apriltags_AprilTagDetector = &__pyx_type_9apriltags_AprilTagDetector;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
@@ -1325,8 +1960,8 @@ PyMODINIT_FUNC PyInit_apriltags(void)
 
   /* "apriltags.pyx":1
  * cimport capriltag             # <<<<<<<<<<<<<<
+ * cimport tags
  * 
- * # Giant block of cdefs for all the tag families
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
@@ -1683,6 +2318,32 @@ invalid_keyword:
     return 0;
 }
 
+static void __Pyx_RaiseArgumentTypeInvalid(const char* name, PyObject *obj, PyTypeObject *type) {
+    PyErr_Format(PyExc_TypeError,
+        "Argument '%.200s' has incorrect type (expected %.200s, got %.200s)",
+        name, type->tp_name, Py_TYPE(obj)->tp_name);
+}
+static CYTHON_INLINE int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, int none_allowed,
+    const char *name, int exact)
+{
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
+    }
+    if (none_allowed && obj == Py_None) return 1;
+    else if (exact) {
+        if (likely(Py_TYPE(obj) == type)) return 1;
+        #if PY_MAJOR_VERSION == 2
+        else if ((type == &PyBaseString_Type) && likely(__Pyx_PyBaseString_CheckExact(obj))) return 1;
+        #endif
+    }
+    else {
+        if (likely(PyObject_TypeCheck(obj, type))) return 1;
+    }
+    __Pyx_RaiseArgumentTypeInvalid(name, obj, type);
+    return 0;
+}
+
 static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
     int start = 0, mid = 0, end = count - 1;
     if (end >= 0 && code_line > entries[end].code_line) {
@@ -1842,32 +2503,6 @@ bad:
     Py_XDECREF(py_frame);
 }
 
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
-    const long neg_one = (long) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(long) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(long) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-        } else if (sizeof(long) <= sizeof(unsigned long long)) {
-            return PyLong_FromUnsignedLongLong((unsigned long long) value);
-        }
-    } else {
-        if (sizeof(long) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(long) <= sizeof(long long)) {
-            return PyLong_FromLongLong((long long) value);
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(long),
-                                     little, !is_unsigned);
-    }
-}
-
 #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)       \
     {                                                                     \
         func_type value = func_value;                                     \
@@ -1888,101 +2523,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
   #include "longintrepr.h"
  #endif
 #endif
-
-static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
-    const long neg_one = (long) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-#if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_Check(x))) {
-        if (sizeof(long) < sizeof(long)) {
-            __PYX_VERIFY_RETURN_INT(long, long, PyInt_AS_LONG(x))
-        } else {
-            long val = PyInt_AS_LONG(x);
-            if (is_unsigned && unlikely(val < 0)) {
-                goto raise_neg_overflow;
-            }
-            return (long) val;
-        }
-    } else
-#endif
-    if (likely(PyLong_Check(x))) {
-        if (is_unsigned) {
-#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
- #if CYTHON_USE_PYLONG_INTERNALS
-            switch (Py_SIZE(x)) {
-                case  0: return 0;
-                case  1: __PYX_VERIFY_RETURN_INT(long, digit, ((PyLongObject*)x)->ob_digit[0]);
-            }
- #endif
-#endif
-            if (unlikely(Py_SIZE(x) < 0)) {
-                goto raise_neg_overflow;
-            }
-            if (sizeof(long) <= sizeof(unsigned long)) {
-                __PYX_VERIFY_RETURN_INT(long, unsigned long, PyLong_AsUnsignedLong(x))
-            } else if (sizeof(long) <= sizeof(unsigned long long)) {
-                __PYX_VERIFY_RETURN_INT(long, unsigned long long, PyLong_AsUnsignedLongLong(x))
-            }
-        } else {
-#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
- #if CYTHON_USE_PYLONG_INTERNALS
-            switch (Py_SIZE(x)) {
-                case  0: return 0;
-                case  1: __PYX_VERIFY_RETURN_INT(long,  digit, +(((PyLongObject*)x)->ob_digit[0]));
-                case -1: __PYX_VERIFY_RETURN_INT(long, sdigit, -(sdigit) ((PyLongObject*)x)->ob_digit[0]);
-            }
- #endif
-#endif
-            if (sizeof(long) <= sizeof(long)) {
-                __PYX_VERIFY_RETURN_INT(long, long, PyLong_AsLong(x))
-            } else if (sizeof(long) <= sizeof(long long)) {
-                __PYX_VERIFY_RETURN_INT(long, long long, PyLong_AsLongLong(x))
-            }
-        }
-        {
-#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
-            PyErr_SetString(PyExc_RuntimeError,
-                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
-#else
-            long val;
-            PyObject *v = __Pyx_PyNumber_Int(x);
- #if PY_MAJOR_VERSION < 3
-            if (likely(v) && !PyLong_Check(v)) {
-                PyObject *tmp = v;
-                v = PyNumber_Long(tmp);
-                Py_DECREF(tmp);
-            }
- #endif
-            if (likely(v)) {
-                int one = 1; int is_little = (int)*(unsigned char *)&one;
-                unsigned char *bytes = (unsigned char *)&val;
-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
-                                              bytes, sizeof(val),
-                                              is_little, !is_unsigned);
-                Py_DECREF(v);
-                if (likely(!ret))
-                    return val;
-            }
-#endif
-            return (long) -1;
-        }
-    } else {
-        long val;
-        PyObject *tmp = __Pyx_PyNumber_Int(x);
-        if (!tmp) return (long) -1;
-        val = __Pyx_PyInt_As_long(tmp);
-        Py_DECREF(tmp);
-        return val;
-    }
-raise_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "value too large to convert to long");
-    return (long) -1;
-raise_neg_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "can't convert negative value to long");
-    return (long) -1;
-}
 
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
     const int neg_one = (int) -1, const_zero = 0;
@@ -2077,6 +2617,153 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to int");
     return (int) -1;
+}
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
+    const int neg_one = (int) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(int) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long long)) {
+            return PyLong_FromUnsignedLongLong((unsigned long long) value);
+        }
+    } else {
+        if (sizeof(int) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(long long)) {
+            return PyLong_FromLongLong((long long) value);
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
+    const long neg_one = (long) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(long) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(long) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+        } else if (sizeof(long) <= sizeof(unsigned long long)) {
+            return PyLong_FromUnsignedLongLong((unsigned long long) value);
+        }
+    } else {
+        if (sizeof(long) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(long) <= sizeof(long long)) {
+            return PyLong_FromLongLong((long long) value);
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(long),
+                                     little, !is_unsigned);
+    }
+}
+
+static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
+    const long neg_one = (long) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(long) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(long, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (long) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
+ #if CYTHON_USE_PYLONG_INTERNALS
+            switch (Py_SIZE(x)) {
+                case  0: return 0;
+                case  1: __PYX_VERIFY_RETURN_INT(long, digit, ((PyLongObject*)x)->ob_digit[0]);
+            }
+ #endif
+#endif
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+            if (sizeof(long) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT(long, unsigned long, PyLong_AsUnsignedLong(x))
+            } else if (sizeof(long) <= sizeof(unsigned long long)) {
+                __PYX_VERIFY_RETURN_INT(long, unsigned long long, PyLong_AsUnsignedLongLong(x))
+            }
+        } else {
+#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
+ #if CYTHON_USE_PYLONG_INTERNALS
+            switch (Py_SIZE(x)) {
+                case  0: return 0;
+                case  1: __PYX_VERIFY_RETURN_INT(long,  digit, +(((PyLongObject*)x)->ob_digit[0]));
+                case -1: __PYX_VERIFY_RETURN_INT(long, sdigit, -(sdigit) ((PyLongObject*)x)->ob_digit[0]);
+            }
+ #endif
+#endif
+            if (sizeof(long) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT(long, long, PyLong_AsLong(x))
+            } else if (sizeof(long) <= sizeof(long long)) {
+                __PYX_VERIFY_RETURN_INT(long, long long, PyLong_AsLongLong(x))
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            long val;
+            PyObject *v = __Pyx_PyNumber_Int(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (long) -1;
+        }
+    } else {
+        long val;
+        PyObject *tmp = __Pyx_PyNumber_Int(x);
+        if (!tmp) return (long) -1;
+        val = __Pyx_PyInt_As_long(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to long");
+    return (long) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to long");
+    return (long) -1;
 }
 
 static int __Pyx_check_binary_version(void) {
