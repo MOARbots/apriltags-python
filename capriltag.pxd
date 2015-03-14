@@ -4,7 +4,7 @@ cdef extern from "apriltag.h":
 		int nthreads
 		float quad_decimate;
 		float quad_sigma;
-		int refine_decode;
+		bint refine_decode;
 		int refine_pose;
 		int debug;
 
