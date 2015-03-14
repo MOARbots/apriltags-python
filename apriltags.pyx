@@ -65,3 +65,9 @@ cdef class AprilTagDetector:
 			return self._apriltag_detector.refine_decode
 		def __set__(self, bint refine_decode):
 			self._apriltag_detector.refine_decode = refine_decode
+
+	property debug:
+		def __get__(self):
+			return self._apriltag_detector.debug
+		def __set__(self, bint debug):
+			self._apriltag_detector.debug = debug

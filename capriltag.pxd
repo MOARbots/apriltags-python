@@ -6,7 +6,7 @@ cdef extern from "apriltag.h":
 		float quad_sigma;
 		bint refine_decode;
 		int refine_pose;
-		int debug;
+		bint debug;
 
 	# Detector constructor and destructor
 	apriltag_detector_t* apriltag_detector_create()
