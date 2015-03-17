@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.3"
+  - "2.7"
+install:
+  - pip install cython
+before_script:
+  - git clone https://github.com/MOARbots/apriltags
+  - cd apriltags
+  - git checkout c
+  - make
+  - sudo make install
+  - cd ..
+script:
+  - CFLAGS="-I/usr/local/include/libcapriltag -I/usr/local/include/libcapriltag/common/ -std=c99" LDFLAGS="-L/usr/local/lib/" python setup.py build_ext -i
