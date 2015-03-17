@@ -13,3 +13,4 @@ before_script:
   - cd ..
 script:
   - CFLAGS="-I/usr/local/include/libcapriltag -I/usr/local/include/libcapriltag/common/ -std=c99" LDFLAGS="-L/usr/local/lib/" python setup.py build_ext -i
+  
