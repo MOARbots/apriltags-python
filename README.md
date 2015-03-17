@@ -1,4 +1,2 @@
 # Apriltags-Python
-## A Cython binding to AprilTags-C
-
-[![Code Health](https://landscape.io/github/MOARbots/apriltags-python/master/landscape.svg?style=flat)](https://landscape.io/github/MOARbots/apriltags-python/master)
+[![Build Status](https://img.shields.io/travis/MOARbots/apriltags-python.svg?style=flat)](https://travis-ci.org/MOARbots/apriltags-python) [![Code Health](https://landscape.io/github/MOARbots/apriltags-python/master/landscape.svg?style=flat)](https://landscape.io/github/MOARbots/apriltags-python/master)
