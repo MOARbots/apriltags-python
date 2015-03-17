@@ -21,4 +21,9 @@ cdef extern from "apriltag.h":
 	void apriltag_detector_remove_family(apriltag_detector_t* td, apriltag_family_t* fam);
 	void apriltag_detector_clear_families(apriltag_detector_t* td);
 
+	# Detection structure
+	ctypedef struct apriltag_detection_t:
+		pass
+
 	# Functions to get and manipulate detections
+	zarray* apriltag_detector_detect(apriltag_detector_t* td, image_u8_t* im)
