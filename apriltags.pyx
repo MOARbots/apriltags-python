@@ -1,5 +1,6 @@
 cimport capriltag
 cimport tags
+cimport zarray
 
 cdef class AprilTagFamily:
 	cdef capriltag.apriltag_family_t* _apriltag_family
@@ -71,3 +72,11 @@ cdef class AprilTagDetector:
 			return self._apriltag_detector.debug
 		def __set__(self, bint debug):
 			self._apriltag_detector.debug = debug
+
+	def detect(AprilTagImage image not None):
+		zarray* zdetections = capriltag.apriltag_detector_detect(self._apriltag_detector, image._image_u8)
+		detections = []
+		for i in range(0, zarray.zarray_size(zdetections)):
+			capriltag.apriltag_detection_t* detection
+			zarray_get(zdetections, i, &detection)
+			detections.append(AprilTagDetection(detection))
