@@ -1,3 +1,5 @@
+from zarray cimport zarray_t
+
 cdef extern from "apriltag.h":
 	# The detector itself
 	ctypedef struct apriltag_detector_t:
@@ -26,4 +28,4 @@ cdef extern from "apriltag.h":
 		pass
 
 	# Functions to get and manipulate detections
-	zarray* apriltag_detector_detect(apriltag_detector_t* td, image_u8_t* im)
+	zarray_t* apriltag_detector_detect(apriltag_detector_t* td, image_u8_t* im)
